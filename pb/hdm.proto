@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pb;
+
+service HDM {
+    rpc Hotels(HotelsRequest) returns (HotelsResponse);
+}
+
+message HotelsRequest {
+    string msg = 1;
+}
+
+message HotelsResponse {
+    string msg = 1;
+}
