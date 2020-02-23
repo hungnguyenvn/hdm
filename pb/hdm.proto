@@ -7,9 +7,23 @@ service HDM {
 }
 
 message HotelsRequest {
-    string msg = 1;
+    string hotel_id = 1;
+    string destination_id = 2;
 }
 
+
 message HotelsResponse {
-    string msg = 1;
+    message Location {
+        float lat = 1;
+        float lng = 2;
+        string address = 3;
+        string city = 4;
+        string country = 5;
+    }
+
+    string hotel_id = 1;
+    string destination_id = 2;
+    string name = 3;
+    Location location  = 4;
+    repeated string booking_conditions  = 5;
 }

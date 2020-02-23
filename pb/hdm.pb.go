@@ -25,7 +25,8 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type HotelsRequest struct {
-	Msg                  string   `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
+	HotelId              string   `protobuf:"bytes,1,opt,name=hotel_id,json=hotelId,proto3" json:"hotel_id,omitempty"`
+	DestinationId        string   `protobuf:"bytes,2,opt,name=destination_id,json=destinationId,proto3" json:"destination_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -56,18 +57,29 @@ func (m *HotelsRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_HotelsRequest proto.InternalMessageInfo
 
-func (m *HotelsRequest) GetMsg() string {
+func (m *HotelsRequest) GetHotelId() string {
 	if m != nil {
-		return m.Msg
+		return m.HotelId
+	}
+	return ""
+}
+
+func (m *HotelsRequest) GetDestinationId() string {
+	if m != nil {
+		return m.DestinationId
 	}
 	return ""
 }
 
 type HotelsResponse struct {
-	Msg                  string   `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	HotelId              string                   `protobuf:"bytes,1,opt,name=hotel_id,json=hotelId,proto3" json:"hotel_id,omitempty"`
+	DestinationId        string                   `protobuf:"bytes,2,opt,name=destination_id,json=destinationId,proto3" json:"destination_id,omitempty"`
+	Name                 string                   `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Location             *HotelsResponse_Location `protobuf:"bytes,4,opt,name=location,proto3" json:"location,omitempty"`
+	BookingConditions    []string                 `protobuf:"bytes,5,rep,name=booking_conditions,json=bookingConditions,proto3" json:"booking_conditions,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
+	XXX_unrecognized     []byte                   `json:"-"`
+	XXX_sizecache        int32                    `json:"-"`
 }
 
 func (m *HotelsResponse) Reset()         { *m = HotelsResponse{} }
@@ -95,9 +107,108 @@ func (m *HotelsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_HotelsResponse proto.InternalMessageInfo
 
-func (m *HotelsResponse) GetMsg() string {
+func (m *HotelsResponse) GetHotelId() string {
 	if m != nil {
-		return m.Msg
+		return m.HotelId
+	}
+	return ""
+}
+
+func (m *HotelsResponse) GetDestinationId() string {
+	if m != nil {
+		return m.DestinationId
+	}
+	return ""
+}
+
+func (m *HotelsResponse) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *HotelsResponse) GetLocation() *HotelsResponse_Location {
+	if m != nil {
+		return m.Location
+	}
+	return nil
+}
+
+func (m *HotelsResponse) GetBookingConditions() []string {
+	if m != nil {
+		return m.BookingConditions
+	}
+	return nil
+}
+
+type HotelsResponse_Location struct {
+	Lat                  float32  `protobuf:"fixed32,1,opt,name=lat,proto3" json:"lat,omitempty"`
+	Lng                  float32  `protobuf:"fixed32,2,opt,name=lng,proto3" json:"lng,omitempty"`
+	Address              string   `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	City                 string   `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
+	Country              string   `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *HotelsResponse_Location) Reset()         { *m = HotelsResponse_Location{} }
+func (m *HotelsResponse_Location) String() string { return proto.CompactTextString(m) }
+func (*HotelsResponse_Location) ProtoMessage()    {}
+func (*HotelsResponse_Location) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7e2090a7b1c290bd, []int{1, 0}
+}
+
+func (m *HotelsResponse_Location) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HotelsResponse_Location.Unmarshal(m, b)
+}
+func (m *HotelsResponse_Location) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HotelsResponse_Location.Marshal(b, m, deterministic)
+}
+func (m *HotelsResponse_Location) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HotelsResponse_Location.Merge(m, src)
+}
+func (m *HotelsResponse_Location) XXX_Size() int {
+	return xxx_messageInfo_HotelsResponse_Location.Size(m)
+}
+func (m *HotelsResponse_Location) XXX_DiscardUnknown() {
+	xxx_messageInfo_HotelsResponse_Location.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_HotelsResponse_Location proto.InternalMessageInfo
+
+func (m *HotelsResponse_Location) GetLat() float32 {
+	if m != nil {
+		return m.Lat
+	}
+	return 0
+}
+
+func (m *HotelsResponse_Location) GetLng() float32 {
+	if m != nil {
+		return m.Lng
+	}
+	return 0
+}
+
+func (m *HotelsResponse_Location) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+func (m *HotelsResponse_Location) GetCity() string {
+	if m != nil {
+		return m.City
+	}
+	return ""
+}
+
+func (m *HotelsResponse_Location) GetCountry() string {
+	if m != nil {
+		return m.Country
 	}
 	return ""
 }
@@ -105,20 +216,31 @@ func (m *HotelsResponse) GetMsg() string {
 func init() {
 	proto.RegisterType((*HotelsRequest)(nil), "pb.HotelsRequest")
 	proto.RegisterType((*HotelsResponse)(nil), "pb.HotelsResponse")
+	proto.RegisterType((*HotelsResponse_Location)(nil), "pb.HotelsResponse.Location")
 }
 
 func init() { proto.RegisterFile("hdm.proto", fileDescriptor_7e2090a7b1c290bd) }
 
 var fileDescriptor_7e2090a7b1c290bd = []byte{
-	// 119 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xcc, 0x48, 0xc9, 0xd5,
-	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2a, 0x48, 0x52, 0x52, 0xe4, 0xe2, 0xf5, 0xc8, 0x2f,
-	0x49, 0xcd, 0x29, 0x0e, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x12, 0xe0, 0x62, 0xce, 0x2d,
-	0x4e, 0x97, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0c, 0x02, 0x31, 0x95, 0x94, 0xb8, 0xf8, 0x60, 0x4a,
-	0x8a, 0x0b, 0xf2, 0xf3, 0x8a, 0x53, 0x31, 0xd5, 0x18, 0x99, 0x71, 0x31, 0x7b, 0xb8, 0xf8, 0x0a,
-	0xe9, 0x73, 0xb1, 0x41, 0x94, 0x0a, 0x09, 0xea, 0x15, 0x24, 0xe9, 0xa1, 0x98, 0x2c, 0x25, 0x84,
-	0x2c, 0x04, 0x31, 0x29, 0x89, 0x0d, 0xec, 0x12, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc3,
-	0x55, 0x1b, 0x6a, 0x96, 0x00, 0x00, 0x00,
+	// 285 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x91, 0x4f, 0x6a, 0xf3, 0x30,
+	0x10, 0xc5, 0x89, 0x9d, 0x3f, 0xf6, 0x7c, 0x24, 0x7c, 0x99, 0x95, 0x9a, 0x6e, 0x4c, 0xa0, 0xe0,
+	0x4d, 0x5d, 0x48, 0xa1, 0x3d, 0x40, 0xbb, 0x48, 0xa0, 0x5d, 0x54, 0x17, 0x08, 0xb6, 0x25, 0x1c,
+	0x51, 0x47, 0x72, 0x2d, 0xa5, 0x90, 0x0b, 0xf6, 0x5c, 0x45, 0x13, 0x3b, 0xa4, 0x74, 0xd9, 0xdd,
+	0xcc, 0x9b, 0x1f, 0x4f, 0xef, 0x21, 0x88, 0x77, 0x62, 0x9f, 0x35, 0xad, 0x71, 0x06, 0x83, 0xa6,
+	0x58, 0xbe, 0xc1, 0x74, 0x6d, 0x9c, 0xac, 0x2d, 0x97, 0x1f, 0x07, 0x69, 0x1d, 0x5e, 0x41, 0xb4,
+	0xf3, 0xc2, 0x56, 0x09, 0x36, 0x48, 0x06, 0x69, 0xcc, 0x27, 0xb4, 0x6f, 0x04, 0xde, 0xc0, 0x4c,
+	0x48, 0xeb, 0x94, 0xce, 0x9d, 0x32, 0xda, 0x03, 0x01, 0x01, 0xd3, 0x0b, 0x75, 0x23, 0x96, 0x5f,
+	0x01, 0xcc, 0x7a, 0x4f, 0xdb, 0x18, 0x6d, 0xe5, 0xdf, 0x4d, 0x11, 0x61, 0xa8, 0xf3, 0xbd, 0x64,
+	0x21, 0x1d, 0x69, 0xc6, 0x47, 0x88, 0x6a, 0x53, 0x12, 0xc1, 0x86, 0xc9, 0x20, 0xfd, 0xb7, 0xba,
+	0xce, 0x9a, 0x22, 0xfb, 0xf9, 0x76, 0xf6, 0xd2, 0x21, 0xfc, 0x0c, 0xe3, 0x2d, 0x60, 0x61, 0xcc,
+	0xbb, 0xd2, 0xd5, 0xb6, 0x34, 0x5a, 0x28, 0x2f, 0x5a, 0x36, 0x4a, 0xc2, 0x34, 0xe6, 0xf3, 0xee,
+	0xf2, 0x74, 0x3e, 0x2c, 0x3e, 0x21, 0xea, 0x4d, 0xf0, 0x3f, 0x84, 0x75, 0xee, 0xa8, 0x44, 0xc0,
+	0xfd, 0x48, 0x8a, 0xae, 0x28, 0xb5, 0x57, 0x74, 0x85, 0x0c, 0x26, 0xb9, 0x10, 0xad, 0xb4, 0xb6,
+	0x8b, 0xdb, 0xaf, 0xbe, 0x45, 0xa9, 0xdc, 0x91, 0xd2, 0xc6, 0x9c, 0x66, 0x4f, 0x97, 0xe6, 0xa0,
+	0x5d, 0x7b, 0x64, 0xa3, 0x13, 0xdd, 0xad, 0xab, 0x07, 0x08, 0xd7, 0xcf, 0xaf, 0x78, 0x07, 0xe3,
+	0x53, 0x25, 0x9c, 0x5f, 0xd6, 0xa3, 0xef, 0x5a, 0xe0, 0xef, 0xc6, 0xc5, 0x98, 0xbe, 0xf7, 0xfe,
+	0x3b, 0x00, 0x00, 0xff, 0xff, 0x2d, 0x8f, 0xe7, 0x20, 0xeb, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.

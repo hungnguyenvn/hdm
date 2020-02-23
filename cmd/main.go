@@ -23,6 +23,7 @@ func main() {
 
 func runHTTPServer(ch chan error) {
 	server := hdm.NewHTTPServer()
+	log.Println("Start to HTTP server")
 	ch <- server.ListenAndServe()
 }
 
@@ -37,6 +38,7 @@ func runGRPCServer(ch chan error) {
 	pb.RegisterHDMServer(grpcServer, handler)
 
 	conn := hdm.ConnectGRPC(ch)
+	log.Println("Connect to GRPC server")
 	defer conn.Close()
 	ch <- grpcServer.Serve(lis)
 }
