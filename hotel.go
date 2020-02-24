@@ -14,6 +14,11 @@ type HotelV1 struct {
 	Facilities    []string     `json:"Facilities"`
 }
 
+type Amenities struct {
+	General []string `json:"general"`
+	Room    []string `json:"room"`
+}
+
 type Hotel struct {
 	ID               string
 	DestinationID    uint
@@ -24,6 +29,7 @@ type Hotel struct {
 	HotelImages      HotelImages
 	Facilities       []string
 	BookingCondition []string
+	Amenities        Amenities
 }
 
 type Location struct {
@@ -38,9 +44,15 @@ type Image struct {
 	Description string `json:"caption"`
 }
 
+type ImageV1 struct {
+	Link        string `json:"url"`
+	Description string `json:"description"`
+}
+
 type HotelImages struct {
-	Rooms []Image `json:"rooms"`
-	Site  []Image `json:"site"`
+	Rooms     []Image   `json:"rooms"`
+	Site      []Image   `json:"site"`
+	Amenities []ImageV1 `json:"amenities"`
 }
 
 type HotelV2 struct {
@@ -51,6 +63,7 @@ type HotelV2 struct {
 	Description   string      `json:"details"`
 	HotelImages   HotelImages `json:"images"`
 	Conditions    []string    `json:"booking_conditions"`
+	Amenities     Amenities   `json:"amenities"`
 }
 
 type HotelV3 struct {
@@ -61,4 +74,5 @@ type HotelV3 struct {
 	Longtitude    *FloatString `json:"lng"`
 	Address       *string      `json:"address"`
 	Infor         string       `json:"info"`
+	HotelImages   HotelImages  `json:"images"`
 }

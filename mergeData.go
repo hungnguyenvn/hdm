@@ -12,14 +12,36 @@ func (h *Hotel) mergeV1(v1 HotelV1) {
 	h.Location.City = v1.City
 
 	h.BookingCondition = append(h.BookingCondition, v1.Description)
+
+	if len(v1.Facilities) > 0 {
+		h.Amenities.Room = v1.Facilities
+	}
 }
 
 func (h *Hotel) mergeV2(v HotelV2) {
 	h.BookingCondition = append(h.BookingCondition, v.Description)
+
+	if len(v.Amenities.General) > 0 {
+		h.Amenities.General = v.Amenities.General
+	}
+	if len(v.Amenities.Room) > 0 {
+		h.Amenities.Room = v.Amenities.Room
+	}
+
+	if len(v.HotelImages.Amenities) > 0 {
+		h.HotelImages.Amenities = v.HotelImages.Amenities
+	}
+	if len(v.HotelImages.Site) > 0 {
+		h.HotelImages.Site = v.HotelImages.Site
+	}
 }
 
 func (h *Hotel) mergeV3(v HotelV3) {
 	h.BookingCondition = append(h.BookingCondition, v.Infor)
+
+	if len(v.HotelImages.Amenities) > 0 {
+		h.HotelImages.Amenities = v.HotelImages.Amenities
+	}
 }
 
 func (h *Hotel) merge(varian interface{}) {
@@ -49,10 +71,15 @@ func makeHotelFromVarian_1(h HotelV1) Hotel {
 		ID:            h.ID,
 		DestinationID: h.DestinationID,
 		Name:          h.Name,
+		HotelImages:   HotelImages{},
 		Address:       h.Address,
 		City:          h.City,
 		Facilities:    h.Facilities,
 		Location:      Location{},
+		Amenities: Amenities{
+			General: make([]string, 0),
+			Room:    make([]string, 0),
+		},
 	}
 }
 
@@ -63,6 +90,10 @@ func makeHotelFromVarian_2(h HotelV2) Hotel {
 		Name:          h.Name,
 		HotelImages:   h.HotelImages,
 		Location:      Location{},
+		Amenities: Amenities{
+			General: make([]string, 0),
+			Room:    make([]string, 0),
+		},
 	}
 }
 
@@ -71,6 +102,11 @@ func makeHotelFromVarian_3(h HotelV3) Hotel {
 		ID:            h.ID,
 		DestinationID: h.DestinationID,
 		Name:          h.Name,
+		HotelImages:   HotelImages{},
 		Location:      Location{},
+		Amenities: Amenities{
+			General: make([]string, 0),
+			Room:    make([]string, 0),
+		},
 	}
 }

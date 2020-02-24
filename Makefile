@@ -1,5 +1,5 @@
 all:
-	go run -race cmd/main.go
+	go run cmd/main.go
 
 .PHONY: test	
 

@@ -20,10 +20,28 @@ message HotelsResponse {
         string city = 4;
         string country = 5;
     }
+    message Amenities {
+        repeated string general = 1;
+        repeated string room = 2;
+    }
+
 
     string hotel_id = 1;
     string destination_id = 2;
     string name = 3;
     Location location  = 4;
-    repeated string booking_conditions  = 5;
+    repeated string booking_conditions = 5;
+    Amenities amenities = 6;
+    ImageResponse images = 7;
+}
+
+message ImageResponse {
+    message Image {
+        string link = 1;
+        string description = 2;
+    }
+    repeated Image rooms = 1;
+    repeated Image site = 2;
+    repeated Image amenities = 3;
+    
 }
