@@ -58,6 +58,10 @@ func TestSource_1(t *testing.T) {
 	}
 }
 
+func TestSource_Dum(t *testing.T) {
+	// This is test for enable travis
+}
+
 const float64EqualityThreshold = 1e-9
 
 func almostEqual(a, b float64) bool {
