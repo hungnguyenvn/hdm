@@ -3,7 +3,7 @@ all:
 
 .PHONY: ci-test	
 
-ci-test: clean vet
+ci-test: clean 
 	go test ./... -cover -race -bench=.
 
 vet:
