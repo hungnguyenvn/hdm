@@ -1,7 +1,13 @@
 all:
 	go run cmd/main.go
 
-.PHONY: test	
+.PHONY: ci-test	
 
-test:
-	go test -race
+ci-test: clean vet
+	go test ./... -cover -race -bench=.
+
+vet:
+	go list ./... | grep -v "vendor/" | xargs go vet
+
+clean:
+	go clean ./...
