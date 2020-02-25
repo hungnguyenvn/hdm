@@ -5,7 +5,7 @@ func (h *Hotel) mergeV1(v1 HotelV1) {
 		h.Location.Lat = float32(*v1.Latitude)
 	}
 	if v1.Longtitude != nil {
-		h.Location.Long = float32(*v1.Latitude)
+		h.Location.Long = float32(*v1.Longtitude)
 	}
 	h.Location.Address = v1.Address
 	h.Location.Country = v1.Country

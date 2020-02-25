@@ -1,7 +1,11 @@
 all:
 	go run cmd/main.go
 
-.PHONY: test	
+.PHONY: ci-test	
 
-test:
-	go test -race
+ci-test:  
+	env GO111MODULE=on go build
+	env GO111MODULE=on go test ./... -cover -race -bench=.
+
+vet:
+	go list ./... | grep -v "vendor/" | xargs go vet
