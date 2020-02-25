@@ -4,13 +4,5 @@ sudo: false
 go:
   - "1.12.1"
 
-python:
-  - "2.7"
-
 script:
-  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - make ci-test
-
-branches:
-  only:
-    - master
