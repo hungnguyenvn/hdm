@@ -3,12 +3,11 @@ all:
 
 .PHONY: ci-test	
 
-ci-test: clean 
+ci-test: dep 
 	go test ./... -cover -race -bench=.
 
 vet:
 	go list ./... | grep -v "vendor/" | xargs go vet
 
-clean:
-	go clean ./...
+dep:
 	go get -u ./...
