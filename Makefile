@@ -3,11 +3,9 @@ all:
 
 .PHONY: ci-test	
 
-ci-test: dep 
-	go test ./... -cover -race -bench=.
+ci-test:  
+	env GO111MODULE=on go build
+	env GO111MODULE=on go test ./... -cover -race -bench=.
 
 vet:
 	go list ./... | grep -v "vendor/" | xargs go vet
-
-dep:
-	go get -u ./...
