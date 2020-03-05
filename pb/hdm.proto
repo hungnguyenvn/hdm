@@ -33,6 +33,7 @@ message HotelsResponse {
     repeated string booking_conditions = 5;
     Amenities amenities = 6;
     ImageResponse images = 7;
+    string description = 8;
 }
 
 message ImageResponse {

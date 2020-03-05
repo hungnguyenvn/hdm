@@ -29,6 +29,7 @@ type Hotel struct {
 	HotelImages      HotelImages
 	Facilities       []string
 	BookingCondition []string
+	Description      string
 	Amenities        Amenities
 }
 
@@ -73,6 +74,6 @@ type HotelV3 struct {
 	Latitude      *FloatString `json:"lat"`
 	Longtitude    *FloatString `json:"lng"`
 	Address       *string      `json:"address"`
-	Infor         string       `json:"info"`
+	Descriptions  string       `json:"info"`
 	HotelImages   HotelImages  `json:"images"`
 }

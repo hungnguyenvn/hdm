@@ -51,6 +51,7 @@ func makeHotelResp(h *Hotel) (*pb.HotelsResponse, error) {
 		Amenities:         makeAmenities(h),
 		Images:            makeImage(h),
 		BookingConditions: h.BookingCondition,
+		Description:       h.Description,
 	}, nil
 }
 

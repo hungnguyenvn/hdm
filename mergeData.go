@@ -11,7 +11,9 @@ func (h *Hotel) mergeV1(v1 HotelV1) {
 	h.Location.Country = v1.Country
 	h.Location.City = v1.City
 
-	h.BookingCondition = append(h.BookingCondition, v1.Description)
+	if len(h.Description) < len(v1.Description) {
+		h.Description = v1.Description
+	}
 
 	if len(v1.Facilities) > 0 {
 		h.Amenities.Room = v1.Facilities
@@ -34,13 +36,19 @@ func (h *Hotel) mergeV2(v HotelV2) {
 	if len(v.HotelImages.Site) > 0 {
 		h.HotelImages.Site = v.HotelImages.Site
 	}
+	if len(h.Description) < len(v.Description) {
+		h.Description = v.Description
+	}
+
 }
 
 func (h *Hotel) mergeV3(v HotelV3) {
-	h.BookingCondition = append(h.BookingCondition, v.Infor)
-
 	if len(v.HotelImages.Amenities) > 0 {
 		h.HotelImages.Amenities = v.HotelImages.Amenities
+	}
+
+	if len(h.Description) < len(v.Descriptions) {
+		h.Description = v.Descriptions
 	}
 }
 

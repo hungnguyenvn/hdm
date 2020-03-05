@@ -37,6 +37,54 @@ func TestMergeV1Location(t *testing.T) {
 	}
 }
 
+func TestMergeDesctionsV1(t *testing.T) {
+	hotel := &Hotel{
+		Description: "1",
+	}
+
+	hotelV1 := HotelV1{
+		Description: "11",
+	}
+	hotel.mergeV1(hotelV1)
+
+	if hotel.Description != "11" {
+		t.Errorf("Expect 11 got %s", hotel.Description)
+	}
+}
+
+func TestMergeDesctions_LessThanV1(t *testing.T) {
+	hotel := &Hotel{
+		Description: "11",
+	}
+
+	hotelV1 := HotelV1{
+		Description: "1",
+	}
+	hotel.mergeV1(hotelV1)
+
+	if hotel.Description == "1" {
+		t.Errorf("Expect 11 got %s", hotel.Description)
+	}
+}
+
+func TestMergeDesctionsV1V2(t *testing.T) {
+	hotel := &Hotel{
+		Description: "1",
+	}
+
+	hotelV1 := HotelV1{
+		Description: "11",
+	}
+	hotelV2 := HotelV2{
+		Description: "111",
+	}
+	hotel.mergeV1(hotelV1)
+	hotel.mergeV2(hotelV2)
+	if hotel.Description != "111" {
+		t.Errorf("Expect 111 got %s", hotel.Description)
+	}
+}
+
 func mockHotel() *Hotel {
 	return &Hotel{
 		ID:               "1",
